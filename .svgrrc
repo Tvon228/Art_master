@@ -1,0 +1,7 @@
+module.exports = {
+  jsxRuntime: 'automatic',
+  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+  babelConfig: {
+    presets: ['solid']
+  }
+}
