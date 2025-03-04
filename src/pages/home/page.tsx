@@ -110,7 +110,7 @@ export default function Home() {
 					</div>
 					<div class={classes.mapBlock}>
 						<span class={classes.textEnd}>мы на карте</span>
-						<div class={classes.map} /> {/*добавить карту */}
+						<div class={classes.map} /> 
 						<div class={classes.textEnd}>
 							адрес такой то там
 						</div>{" "}
