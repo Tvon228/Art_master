@@ -32,7 +32,7 @@ export default function Home() {
 							alt="menuIcon"
 							onClick={toggleSidebar}
 						/>
-						<img src={logo} width={200} height={38} alt="logo" />
+						<img src={logo} height={36} alt="logo" />
 						<img
 							src={basket}
 							width={26}

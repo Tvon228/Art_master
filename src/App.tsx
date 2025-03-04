@@ -2,6 +2,7 @@ import classes from "./App.module.sass"
 import Home from "./pages/home/page"
 import { Router, Route } from "@solidjs/router"
 import Contacts from "./pages/contacts/page"
+import Reviews from "./pages/reviews/page"
 
 export default function App() {
 	return (
@@ -9,6 +10,7 @@ export default function App() {
 			<Router>
 				<Route path="/" component={Home} />
 				<Route path="/contacts" component={Contacts} />
+				<Route path="/reviews" component={Reviews} />
 			</Router>
 		</div>
 	)

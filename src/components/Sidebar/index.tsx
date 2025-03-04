@@ -84,7 +84,7 @@ export default function Sidebar(props: SidebarProps): JSX.Element {
 						</div>
 					</div>
 					<a
-						href="/services"
+						href="/reviews"
 						class={classes.menuItem}
 						onClick={props.onClose}
 					>
