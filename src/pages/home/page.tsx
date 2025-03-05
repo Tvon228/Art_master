@@ -1,49 +1,17 @@
 import classes from "./home.module.sass"
 
-import { createSignal } from "solid-js"
-
-import Sidebar from "../../components/Sidebar"
-
-import menu from "../../assets/menu.svg"
-import logo from "../../assets/logo.png"
-import basket from "../../assets/basket.svg"
 import img1 from "../../assets/img1_home.jpg"
 import img2 from "../../assets/img2_home.svg"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
+import Header from "../../components/Header"
 
 export default function Home() {
-	const [isSidebarOpen, setIsSidebarOpen] = createSignal(false)
-
-	const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen())
-	const closeSidebar = () => setIsSidebarOpen(false)
-
 	return (
 		<div class={classes.container}>
-			<Sidebar isOpen={isSidebarOpen()} onClose={closeSidebar} />
 			<div class={classes.content}>
-				<div class={classes.header}>
-					<div class={classes.iconsHeader}>
-						<img
-							src={menu}
-							width={24}
-							height={25}
-							alt="menuIcon"
-							onClick={toggleSidebar}
-						/>
-						<img src={logo} height={36} alt="logo" />
-						<img
-							src={basket}
-							width={26}
-							height={26}
-							alt="basketIcon"
-						/>
-					</div>
-				</div>
-				<div class={classes.headerText}>
-					Организация детских праздников по всему Крыму
-				</div>
+				<Header/>
 				<div class={classes.subheader}>
 					<img src={img1} class={classes.img1} alt="image1" />
 					<div class={classes.infoMain}>

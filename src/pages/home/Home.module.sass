@@ -1,8 +1,6 @@
 .container
     min-height: 100vh
-    min-height: -webkit-fill-available
     position: relative
-    overflow-x: hidden
 
 .content
     max-width: 600px
@@ -10,62 +8,6 @@
     flex-direction: column
     align-items: center
     min-height: 100vh
-
-.header
-    position: fixed
-    top: 0
-    left: 0
-    width: 90%
-    padding: 1.05rem 1.4rem
-
-    display: flex
-    flex-direction: column
-    align-items: center
-    gap: .5rem
-
-    backdrop-filter: blur(6px)
-    background: rgba(255, 255, 255, 0.863)
-    z-index: 10
-
-    mask-image: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 1) 0%, 
-        rgba(0, 0, 0, 1) 85%, 
-        rgba(0, 0, 0, 0) 100%
-    )
-    -webkit-mask-image: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 1) 0%, 
-        rgba(0, 0, 0, 1) 85%, 
-        rgba(0, 0, 0, 0) 100%
-    )
-    mask-size: 100% 100%
-    -webkit-mask-size: 100% 100%
-    mask-position: bottom
-    -webkit-mask-position: bottom
-
-    img
-        &:nth-child(1), &:nth-child(3)
-            width: clamp(24px, 6vw, 28px)
-        &:nth-child(2)
-            width: clamp(180px, 25vw, 200px)
-
-.iconsHeader
-    width: 100%
-    display: flex
-    align-items: center
-    justify-content: space-between
-    min-width: 300px
-
-.headerText
-    position: relative
-    max-width: 320px
-    width: 70%
-    text-align: center
-    font-size: clamp(1rem, 3.5vw, 1.1rem)
-    font-weight: 500
-    color: #E60B80
-    margin-top: 18%
 
 .subheader
     position: relative
