@@ -29,21 +29,28 @@ export default function Sidebar(props: SidebarProps): JSX.Element {
 					[classes.active]: props.isOpen,
 				}}
 			>
-				<div class={classes.header}>
-					<div class={classes.iconsHeader}>
-						<img
-							src={closeIcon}
-							width={26}
-							height={26}
-							onClick={props.onClose}
-						/>
-						<img src={logo} width={200} height={38} alt="logo" />
-						<img
-							src={basket}
-							width={26}
-							height={26}
-							alt="basketIcon"
-						/>
+				<div class={classes.headerContainer}>
+					<div class={classes.header}>
+						<div class={classes.iconsHeader}>
+							<img
+								src={closeIcon}
+								width={26}
+								height={26}
+								onClick={props.onClose}
+							/>
+							<img
+								src={logo}
+								width={190}
+								height={36}
+								alt="logo"
+							/>
+							<img
+								src={basket}
+								width={26}
+								height={26}
+								alt="basketIcon"
+							/>
+						</div>
 					</div>
 					<div class={classes.headerText}>
 						Организация детских праздников по всему Крыму

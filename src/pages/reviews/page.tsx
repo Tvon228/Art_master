@@ -7,7 +7,52 @@ import img2 from "../../assets/img2_home.svg"
 
 import Header from "../../components/Header"
 
+import user1 from "../../assets/user.png"
+import user2 from "../../assets/user.png"
+import user3 from "../../assets/user.png"
+import { createSignal, onCleanup, onMount } from "solid-js"
+
+const reviews = [
+	{
+		id: 1,
+		text: "Лучшие аниматоры! Дети в восторге, все организовано профессионально.",
+		photo: user1,
+	},
+	{
+		id: 2,
+		text: "Спасибо за незабываемый день рождения! Все прошло идеально.",
+		photo: user2,
+	},
+	{
+		id: 3,
+		text: "Организация на высшем уровне. Рекомендую всем родителям!",
+		photo: user3,
+	},
+]
+
 export default function Reviews() {
+	const [activeIndex, setActiveIndex] = createSignal(0)
+	const [animate, setAnimate] = createSignal(true)
+	let intervalId: number
+
+	const startCarousel = () => {
+		intervalId = setInterval(() => {
+			setAnimate(false)
+			setTimeout(() => {
+				setActiveIndex((prev) => (prev + 1) % reviews.length)
+
+				setAnimate(true)
+			}, 500)
+		}, 5000)
+	}
+
+	onMount(() => {
+		startCarousel()
+	})
+
+	onCleanup(() => {
+		clearInterval(intervalId)
+	})
 
 	return (
 		<div class={classes.container}>
@@ -15,8 +60,28 @@ export default function Reviews() {
 			<div class={classes.main}>
 				<img src={img2} class={classes.img2} alt="image2" />
 				<div class={classes.subMain}>
-					<div class={classes.screen} />
-					<div class={classes.photo} />
+					<div
+						classList={{
+							[classes.reviewBlock]: true,
+							[classes.animate]: animate(),
+						}}
+					>
+						<div class={classes.reviewContent}>
+							{reviews[activeIndex()].text}
+						</div>
+					</div>
+					<div
+						classList={{
+							[classes.photoBlock]: true,
+							[classes.animate]: animate(),
+						}}
+					>
+						<img
+							src={reviews[activeIndex()].photo}
+							class={classes.userPhoto}
+							alt="Фото клиента"
+						/>
+					</div>
 				</div>
 			</div>
 			<div class={classes.footer}>

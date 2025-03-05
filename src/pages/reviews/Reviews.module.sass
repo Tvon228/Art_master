@@ -11,17 +11,18 @@
     align-items: center
     min-height: 100vh
     overflow-y: auto
+    overscroll-behavior: contain
 
 .main
     width: 100%
-    position: relative 
-    height: 100% 
+    position: relative
+    height: 100%
 
 .img2
     width: 100%
     max-width: 500px
     display: block
-    margin: 20% auto
+    margin: 15% auto
     position: relative
     z-index: 1
 
@@ -33,21 +34,60 @@
     background-color: white
     display: flex
     justify-content: center
+    align-items: center
     gap: 2vw
-    max-width: 85%
+    max-width: 86%
     margin: 0 0 clamp(1rem, 2vh, 2rem) 0
-    padding: 1rem 1rem
+    padding: 1rem 
     z-index: 1
+    height: 230px
+    border-radius: 1rem
 
-.screen
-    background-color: #a2a2a2
-    width: 165px
-    height: 170px
+.reviewBlock
+    flex: 0 1 60%
+    width: 350px
+    height: 160px
+    background: #ffffff00
+    padding: .5rem 
+    
+    display: flex
+    align-items: center
+    opacity: 1
+    transform: translateX(0)
+    transition: all 0.5s ease-in-out
 
-.photo
-    background-color: #a2a2a2
+    &:not(.animate)
+        opacity: 0
+        transform: translateX(-50px)
+
+.reviewContent
+    height: 100%
+    text-align: left
+    font-size: .875rem
+    font-weight: 900
+    line-height: 1.3
+    color: #E60B80
+
+.photoBlock
+    flex: 0 0 150px
     width: 165px
-    height: 170px
+    height: 250px
+    border-radius: 8px
+    overflow: hidden
+    position: relative
+    opacity: 1
+    transform: translateX(0)
+    transition: all 0.5s ease-in-out
+
+    &:not(.animate)
+        opacity: 0
+        transform: translateX(50px)
+
+.userPhoto
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: top 
 
 .footer
     width: 100%
@@ -95,7 +135,7 @@
     flex-direction: column
     gap: .7rem
     padding-top: 1.5rem
-    padding-bottom: 4rem
+    padding-bottom: 6rem
 
 .map
     width: 17rem
