@@ -1,4 +1,5 @@
 import classes from "./Animators.module.sass"
+import { createSignal, For } from "solid-js"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -6,13 +7,38 @@ import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
 import animators from "../../assets/animators.png"
 import img2 from "../../assets/img2_home.svg"
-
 import { VsSettings } from "solid-icons/vs"
+
 import AnimatorCards from "../../components/Cards/Animators"
 
 export default function Animators() {
-    const handleAddToCart = () => console.log('Добавлено в корзину')
-    const handleDetails = () => console.log('Открыть модалку')
+	const [searchQuery, setSearchQuery] = createSignal("")
+	const handleAddToCart = () => console.log("Добавлено в корзину")
+	const handleDetails = () => console.log("Открыть модалку")
+
+	const filteredCards = () => {
+		return cardsData.filter((card) =>
+			card.text.toLowerCase().includes(searchQuery().toLowerCase())
+		)
+	}
+
+	const cardsData = [
+		{
+			id: 1,
+			imageUrl: animators,
+			text: "Цифровой цирк",
+		},
+		{
+			id: 2,
+			imageUrl: animators,
+			text: "Трансформеры",
+		},
+		{
+			id: 3,
+			imageUrl: animators,
+			text: "Цифровой цирк",
+		},
+	]
 
 	return (
 		<div class={classes.container}>
@@ -22,17 +48,26 @@ export default function Animators() {
 				<input
 					class={classes.inputSearch}
 					placeholder="Поиск по названию"
+					value={searchQuery()}
+					onInput={(e) => setSearchQuery(e.currentTarget.value)}
 				/>
 				<VsSettings size={30} color="#E60B80" />
 			</div>
-			<AnimatorCards
-				imageUrl={animators}
-				text="Веселые пираты с сюрпризами"
-				button1Label="В корзину"
-				button2Label="Подробнее"
-				onButton1Click={handleAddToCart}
-				onButton2Click={handleDetails}
-			/>
+			<div class={classes.cardsContainer}>
+				<img src={img2} class={classes.cardsBackground}/>
+				<div class={classes.cards}>
+					<For each={filteredCards()}>
+						{(card) => (
+							<AnimatorCards
+								imageUrl={card.imageUrl}
+								text={card.text}
+								onButton1Click={handleAddToCart}
+								onButton2Click={handleDetails}
+							/>
+						)}
+					</For>
+				</div>
+			</div>
 			<div class={classes.footer}>
 				<span class={classes.question}>Есть вопросы?</span>
 				<div class={classes.telephone}>

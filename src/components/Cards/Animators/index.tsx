@@ -1,12 +1,10 @@
 import classes from "./AnimatorCards.module.sass"
 
-import { JSX, JSXElement } from "solid-js"
+import { JSXElement } from "solid-js"
 
 type AnimatorCardProps = {
 	imageUrl: string
 	text: string
-	button1Label: string
-	button2Label: string
 	onButton1Click?: () => void
 	onButton2Click?: () => void
 }
@@ -21,15 +19,20 @@ export default function AnimatorCards(props: AnimatorCardProps): JSXElement {
 					alt="Character"
 				/>
 				<p class={classes.text}>{props.text}</p>
-			</div>
-
-			<div class={classes.buttons}>
-				<button class={classes.button} onClick={props.onButton1Click}>
-					{props.button1Label}
-				</button>
-				<button class={classes.button} onClick={props.onButton2Click}>
-					{props.button2Label}
-				</button>
+				<div class={classes.buttons}>
+					<button
+						class={classes.button}
+						onClick={props.onButton1Click}
+					>
+						зовем их!
+					</button>
+					<button
+						class={classes.button}
+						onClick={props.onButton2Click}
+					>
+						подробнее
+					</button>
+				</div>
 			</div>
 		</div>
 	)

@@ -11,7 +11,7 @@ export default function Home() {
 	return (
 		<div class={classes.container}>
 			<div class={classes.content}>
-				<Header/>
+				<Header />
 				<div class={classes.subheader}>
 					<img src={img1} class={classes.img1} alt="image1" />
 					<div class={classes.infoMain}>
@@ -28,7 +28,9 @@ export default function Home() {
 								ВУЗов!
 							</span>
 							<button class={classes.holidayBtn}>
-								Устроить праздник!
+								<a href="/animators">
+									Устроить праздник!
+								</a>
 							</button>
 						</div>
 					</div>
@@ -78,7 +80,7 @@ export default function Home() {
 					</div>
 					<div class={classes.mapBlock}>
 						<span class={classes.textEnd}>мы на карте</span>
-						<div class={classes.map} /> 
+						<div class={classes.map} />
 						<div class={classes.textEnd}>
 							адрес такой то там
 						</div>{" "}
