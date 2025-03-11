@@ -1,24 +1,30 @@
 .card
     overflow: hidden
     width: 100%
-    max-width: 320px
+    background-color: #E60B80
+    z-index: 2
 
 .cloud
     position: relative
-    width: 100%
+    width: 85%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    overflow: visible
+    padding: 0 2rem 
 
 .image
     width: 100%
     height: 100%
     object-fit: cover
     display: block
-    margin-top: -3rem
+    margin-top: -1rem
 
 .text
     position: absolute
-    width: 80%
-    bottom: 19%
-    left: 10%
+    width: 100%
+    bottom: 20%
     font-size: 1.4rem
     font-weight: 900
     color: #E60B80
@@ -26,7 +32,6 @@
 .buttons
     position: absolute
     bottom: 10%
-    left: 13%
     display: grid
     grid-template-columns: 1fr 1fr
     gap: 10px

@@ -1,5 +1,5 @@
 import classes from "./Animators.module.sass"
-import { createSignal, For } from "solid-js"
+import { createSignal, For, Show } from "solid-js"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -9,10 +9,12 @@ import animators from "../../assets/animators.png"
 import img2 from "../../assets/img2_home.svg"
 import { VsSettings } from "solid-icons/vs"
 
+import FiltersModal from "../../components/FiltersMidal"
 import AnimatorCards from "../../components/Cards/Animators"
 
 export default function Animators() {
 	const [searchQuery, setSearchQuery] = createSignal("")
+	const [isOpen, setIsOpen] = createSignal(false)
 	const handleAddToCart = () => console.log("Добавлено в корзину")
 	const handleDetails = () => console.log("Открыть модалку")
 
@@ -36,8 +38,9 @@ export default function Animators() {
 		{
 			id: 3,
 			imageUrl: animators,
-			text: "Цифровой цирк",
+			text: "Вадим дурак 1",
 		},
+		
 	]
 
 	return (
@@ -51,71 +54,100 @@ export default function Animators() {
 					value={searchQuery()}
 					onInput={(e) => setSearchQuery(e.currentTarget.value)}
 				/>
-				<VsSettings size={30} color="#E60B80" />
+				<VsSettings
+					size={30}
+					color="#E60B80"
+					onClick={() => setIsOpen(true)}
+				/>
 			</div>
 			<div class={classes.cardsContainer}>
-				<img src={img2} class={classes.cardsBackground}/>
 				<div class={classes.cards}>
-					<For each={filteredCards()}>
-						{(card) => (
-							<AnimatorCards
-								imageUrl={card.imageUrl}
-								text={card.text}
-								onButton1Click={handleAddToCart}
-								onButton2Click={handleDetails}
+					<Show when={filteredCards().length > 0}>
+						{/* Верхняя шапка */}
+						<div class={classes.cardWrapper}>
+							<img
+								src={img2}
+								class={classes.decorHeaderImage}
+								alt="Верхний декор"
 							/>
-						)}
-					</For>
+						</div>
+
+						{/* Карточки */}
+						<For each={filteredCards()}>
+							{(card) => (
+								<AnimatorCards
+									imageUrl={card.imageUrl}
+									text={card.text}
+									onButton1Click={handleAddToCart}
+									onButton2Click={handleDetails}
+								/>
+							)}
+						</For>
+
+						{/* Нижняя подложка */}
+						<div class={classes.cardWrapper}>
+							<img
+								src={img2}
+								class={classes.decorFooterImage}
+								alt="Нижний декор"
+							/>
+						</div>
+					</Show>
 				</div>
-			</div>
-			<div class={classes.footer}>
-				<span class={classes.question}>Есть вопросы?</span>
-				<div class={classes.telephone}>
-					<span class={classes.textEnd}>задайте их по телефону</span>
-					<a href="tel:+79781234567" class={classes.number}>
-						+7978 123 45 67
-					</a>
-				</div>
-				<div class={classes.socialMedia}>
-					<span class={classes.textEnd}>
-						или напишите нам в соцсетях
-					</span>
-					<div class={classes.messangers}>
-						{" "}
-						{/*добавить соц сети*/}
-						<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
-							<img
-								src={vk}
-								width={45}
-								height={45}
-								alt="menuIcon"
-							/>
-						</a>
-						<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
-							<img
-								src={inst}
-								width={45}
-								height={45}
-								alt="menuIcon"
-							/>
-						</a>
-						<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
-							<img
-								src={telegram}
-								width={45}
-								height={45}
-								alt="menuIcon"
-							/>
+				<div class={classes.footer}>
+					<span class={classes.question}>Есть вопросы?</span>
+					<div class={classes.telephone}>
+						<span class={classes.textEnd}>
+							задайте их по телефону
+						</span>
+						<a href="tel:+79781234567" class={classes.number}>
+							+7978 123 45 67
 						</a>
 					</div>
-				</div>
-				<div class={classes.mapBlock}>
-					<span class={classes.textEnd}>мы на карте</span>
-					<div class={classes.map} /> {/*добавить карту */}
-					<div class={classes.textEnd}>адрес такой то там</div>{" "}
-					{/*добавить адрес */}
+					<div class={classes.socialMedia}>
+						<span class={classes.textEnd}>
+							или напишите нам в соцсетях
+						</span>
+						<div class={classes.messangers}>
+							{" "}
+							{/*добавить соц сети*/}
+							<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
+								<img
+									src={vk}
+									width={45}
+									height={45}
+									alt="menuIcon"
+								/>
+							</a>
+							<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
+								<img
+									src={inst}
+									width={45}
+									height={45}
+									alt="menuIcon"
+								/>
+							</a>
+							<a href="https://vk.com/im/convo/2000000195?entrypoint=list_all">
+								<img
+									src={telegram}
+									width={45}
+									height={45}
+									alt="menuIcon"
+								/>
+							</a>
+						</div>
+					</div>
+					<div class={classes.mapBlock}>
+						<span class={classes.textEnd}>мы на карте</span>
+						<div class={classes.map} /> {/*добавить карту */}
+						<div class={classes.textEnd}>
+							адрес такой то там
+						</div>{" "}
+						{/*добавить адрес */}
+					</div>
 				</div>
 			</div>
+			<FiltersModal isOpen={isOpen()} onClose={() => setIsOpen(false)} />
 		</div>
 	)
 }
