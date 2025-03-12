@@ -1,7 +1,7 @@
 import { createSignal, JSX } from "solid-js"
 import classes from "./Sidebar.module.sass"
 
-import closeIcon from "../../assets/closeSideBar.svg"
+import closeIcon from "../../assets/closeIcon.svg"
 import logo from "../../assets/logo.png"
 import basket from "../../assets/basket.svg"
 import vk from "../../assets/vk.svg"

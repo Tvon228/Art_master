@@ -9,7 +9,7 @@ import animators from "../../assets/animators.png"
 import img2 from "../../assets/img2_home.svg"
 import { VsSettings } from "solid-icons/vs"
 
-import FiltersModal from "../../components/FiltersMidal"
+import FiltersModal from "../../components/FiltersModal"
 import AnimatorCards from "../../components/Cards/Animators"
 
 export default function Animators() {
