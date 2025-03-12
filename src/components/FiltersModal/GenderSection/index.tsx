@@ -1,4 +1,4 @@
-import classes from "./classes.module.sass"
+import classes from "./GenderSection.module.sass"
 
 interface GenderSectionProps {
 	selected: ("boy" | "girl")[]
