@@ -1,14 +1,6 @@
 import classes from "./SortingSection.module.sass"
-import { JSX } from "solid-js"
 
-
-export type SortType = "popularity" | "price" | "alphabet"
-export type SortDirection = "asc" | "desc"
-
-export interface SortingSettings {
-	type: "popularity" | "price" | "alphabet"
-	direction: "asc" | "desc"
-}
+import { SortingSettings, SortType, SortDirection } from "../../../types/types"
 
 interface SortingSectionProps {
 	settings: SortingSettings
@@ -22,26 +14,28 @@ export default function SortingSection(props: SortingSectionProps) {
 	let alphabetDropdownRef: HTMLDivElement | undefined
 
 	const handleSortTypeClick = (type: SortType) => {
-		if (type === "popularity") {
+		if (type === props.settings.type) {
+			// Переключение направления если тип уже выбран
+			const newDirection =
+				props.settings.direction === "asc" ? "desc" : "asc"
+			props.onSettingsChange({
+				...props.settings,
+				direction: newDirection,
+			})
+		} else {
+			// Выбор нового типа с направлением по умолчанию
 			props.onSettingsChange({
 				type: type,
 				direction: "asc",
 			})
+		}
+
+		if (type === props.openedDropdown) {
 			props.onDropdownToggle(null)
 		} else {
-			const newDirection =
-				props.settings.type === type ? props.settings.direction : "asc"
-
-			props.onSettingsChange({
-				type: type,
-				direction: newDirection,
-			})
-
-			if (type === props.openedDropdown) {
-				props.onDropdownToggle(null)
-			} else {
-				props.onDropdownToggle(type)
-			}
+			props.onDropdownToggle(
+				type === "price" || type === "alphabet" ? type : null
+			)
 		}
 	}
 
@@ -63,11 +57,13 @@ export default function SortingSection(props: SortingSectionProps) {
 						class={classes.sortType}
 						classList={{
 							[classes.active]:
-								props.settings.type === "popularity",
+								props.settings.type === "popularity" &&
+								props.settings.direction !== "asc",
 						}}
 						onClick={() => handleSortTypeClick("popularity")}
 					>
 						Популярности
+						
 					</div>
 
 					{/* Цена */}

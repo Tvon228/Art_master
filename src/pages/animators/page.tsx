@@ -1,7 +1,7 @@
 import classes from "./Animators.module.sass"
 import { createSignal, For, Show } from "solid-js"
 
-import { AnimatorCard, SortingSettings } from "../../types/types"
+import { AnimatorCard, SortingSettings, FiltersType } from "../../types/types"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -14,11 +14,18 @@ import { VsSettings } from "solid-icons/vs"
 import FiltersModal from "../../components/FiltersModal"
 import AnimatorCards from "../../components/Cards/Animators"
 
+const defaultFilters: FiltersType = {
+	genders: [],
+	age: null,
+	minPrice: null,
+	maxPrice: null,
+	sort: { type: "popularity", direction: "asc" },
+}
 
 export default function Animators() {
 	const [searchQuery, setSearchQuery] = createSignal("")
 	const [isOpen, setIsOpen] = createSignal(false)
-	
+
 	const cardsData: AnimatorCard[] = [
 		{
 			id: 1,
@@ -48,7 +55,6 @@ export default function Animators() {
 			popularity: 55,
 		},
 	]
-
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
 	const handleDetails = () => console.log("Открыть модалку")
@@ -90,6 +96,9 @@ export default function Animators() {
 
 			return searchMatch && genderMatch && ageMatch && priceMatch
 		})
+		if (appliedFilters().sort.type === "none") {
+			return filtered
+		}
 		return [...filtered].sort((a, b) => {
 			const { type, direction } = appliedFilters().sort
 			const modifier = direction === "asc" ? 1 : -1
@@ -100,13 +109,13 @@ export default function Animators() {
 				case "alphabet":
 					return a.text.localeCompare(b.text) * modifier
 				case "popularity":
-				default:
 					return (b.popularity - a.popularity) * modifier
+				default:
+					return 0 
 			}
 		})
 	}
 
-	
 	return (
 		<div class={classes.container}>
 			<Header />
@@ -215,6 +224,7 @@ export default function Animators() {
 				isOpen={isOpen()}
 				onClose={() => setIsOpen(false)}
 				initialFilters={appliedFilters()}
+				defaultFilters={defaultFilters}
 				onApply={setAppliedFilters}
 			/>
 		</div>

@@ -7,17 +7,17 @@ import GenderSection from "./GenderSection"
 import AgeFilter from "./AgeFilter"
 import PriceFilter from "./PriceFilter"
 import SortingSection from "./SortingSection"
-import { SortingSettings } from "../../types/types"
+import { FiltersType } from "../../types/types"
 import ActionsSection from "./ActionsSection"
 
 import closeModal from "../../assets/closeIcon.svg"
 
-type FiltersType = {
-	genders: ("boy" | "girl")[]
-	age: number | null
-	minPrice: number | null
-	maxPrice: number | null
-	sort: SortingSettings
+const defaultFilters: FiltersType = {
+	genders: [],
+	age: null,
+	minPrice: null,
+	maxPrice: null,
+	sort: { type: "none", direction: "asc" }, 
 }
 
 interface FiltersModalProps {
@@ -25,6 +25,7 @@ interface FiltersModalProps {
 	onClose: () => void
 	initialFilters: FiltersType
 	onApply: (filters: FiltersType) => void
+	defaultFilters: FiltersType
 }
 
 export default function FiltersModal(props: FiltersModalProps) {
@@ -41,6 +42,11 @@ export default function FiltersModal(props: FiltersModalProps) {
 
 	const handleSave = () => {
 		props.onApply(localFilters())
+		props.onClose()
+	}
+
+	const handleReset = () => {
+		props.onApply(props.defaultFilters)
 		props.onClose()
 	}
 
@@ -96,7 +102,7 @@ export default function FiltersModal(props: FiltersModalProps) {
 						/>
 
 						<ActionsSection
-							onClose={props.onClose}
+							onReset={handleReset}
 							onSave={handleSave}
 						/>
 					</div>

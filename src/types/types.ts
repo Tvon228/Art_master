@@ -10,7 +10,7 @@ export interface AnimatorCard {
 	popularity: number
 }
 
-export type SortType = "popularity" | "price" | "alphabet"
+export type SortType = "none" | "popularity" | "price" | "alphabet"
 export type SortDirection = "asc" | "desc"
 
 export interface SortingSettings {
