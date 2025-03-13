@@ -2,25 +2,25 @@ import classes from "./PriceFilter.module.sass"
 import { JSX } from "solid-js"
 
 interface PriceFilterProps {
-	min: string
-	max: string
-	onMinChange: (value: string) => void
-	onMaxChange: (value: string) => void
+	minPrice: number | null
+	maxPrice: number | null
+	onMinChange: (value: number | null) => void
+	onMaxChange: (value: number | null) => void
 }
 
 export default function PriceFilter(props: PriceFilterProps) {
 	const handleMinInput: JSX.EventHandler<HTMLInputElement, InputEvent> = (
 		e
 	) => {
-		const value = e.currentTarget.value.replace(/\D/g, "")
-		props.onMinChange(value)
+		const value = e.currentTarget.value
+		props.onMinChange(value ? parseInt(value, 10) : null)
 	}
 
 	const handleMaxInput: JSX.EventHandler<HTMLInputElement, InputEvent> = (
 		e
 	) => {
-		const value = e.currentTarget.value.replace(/\D/g, "")
-		props.onMaxChange(value)
+		const value = e.currentTarget.value
+		props.onMaxChange(value ? parseInt(value, 10) : null)
 	}
 
 	return (
@@ -29,16 +29,14 @@ export default function PriceFilter(props: PriceFilterProps) {
 			<div class={classes.priceRange}>
 				<input
 					type="number"
-					placeholder="от"
-					class={classes.input}
-					value={props.min}
+					placeholder="От"
+					value={props.minPrice ?? ""}
 					onInput={handleMinInput}
 				/>
 				<input
 					type="number"
-					placeholder="до"
-					class={classes.input}
-					value={props.max}
+					placeholder="До"
+					value={props.maxPrice ?? ""}
 					onInput={handleMaxInput}
 				/>
 			</div>

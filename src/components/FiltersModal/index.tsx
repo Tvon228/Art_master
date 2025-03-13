@@ -1,36 +1,48 @@
 import classes from "./FiltersModal.module.sass"
 
-import { Show, createSignal } from "solid-js"
+import { Show, createSignal, createEffect } from "solid-js"
 import { Portal } from "solid-js/web"
 
 import GenderSection from "./GenderSection"
 import AgeFilter from "./AgeFilter"
 import PriceFilter from "./PriceFilter"
 import SortingSection from "./SortingSection"
-import { SortingSettings } from "./SortingSection"
+import { SortingSettings } from "../../types/types"
 import ActionsSection from "./ActionsSection"
 
 import closeModal from "../../assets/closeIcon.svg"
 
+type FiltersType = {
+	genders: ("boy" | "girl")[]
+	age: number | null
+	minPrice: number | null
+	maxPrice: number | null
+	sort: SortingSettings
+}
+
 interface FiltersModalProps {
 	isOpen: boolean
 	onClose: () => void
+	initialFilters: FiltersType
+	onApply: (filters: FiltersType) => void
 }
 
 export default function FiltersModal(props: FiltersModalProps) {
-	const [_, setSelectedAge] = createSignal("")
-	const [selectedGenders, setSelectedGenders] = createSignal<
-		("boy" | "girl")[]
-	>([])
-	const [sortSettings, setSortSettings] = createSignal<SortingSettings>({
-		type: "popularity",
-		direction: "asc",
-	})
-	const [minPrice, setMinPrice] = createSignal("")
-	const [maxPrice, setMaxPrice] = createSignal("")
+	const [localFilters, setLocalFilters] = createSignal(props.initialFilters)
 	const [openedDropdown, setOpenedDropdown] = createSignal<
 		"price" | "alphabet" | null
 	>(null)
+
+	createEffect(() => {
+		if (props.isOpen) {
+			setLocalFilters(props.initialFilters)
+		}
+	})
+
+	const handleSave = () => {
+		props.onApply(localFilters())
+		props.onClose()
+	}
 
 	return (
 		<Show when={props.isOpen}>
@@ -44,32 +56,48 @@ export default function FiltersModal(props: FiltersModalProps) {
 						/>
 
 						<GenderSection
-							selected={selectedGenders()}
-							onToggle={setSelectedGenders}
+							selected={localFilters().genders}
+							onToggle={(genders) =>
+								setLocalFilters((p) => ({ ...p, genders }))
+							}
 						/>
 
-						<AgeFilter onAgeChange={(age) => setSelectedAge(age)} />
+						<AgeFilter
+							age={localFilters().age}
+							onAgeChange={(age) =>
+								setLocalFilters((p) => ({ ...p, age }))
+							}
+						/>
 
 						<PriceFilter
-							min={minPrice()}
-							max={maxPrice()}
-							onMinChange={setMinPrice}
-							onMaxChange={setMaxPrice}
+							minPrice={localFilters().minPrice}
+							maxPrice={localFilters().maxPrice}
+							onMinChange={(min) =>
+								setLocalFilters((p) => ({
+									...p,
+									minPrice: min,
+								}))
+							}
+							onMaxChange={(max) =>
+								setLocalFilters((p) => ({
+									...p,
+									maxPrice: max,
+								}))
+							}
 						/>
 
 						<SortingSection
-							settings={sortSettings()}
-							onSettingsChange={setSortSettings}
+							settings={localFilters().sort}
+							onSettingsChange={(sort) =>
+								setLocalFilters((p) => ({ ...p, sort }))
+							}
 							openedDropdown={openedDropdown()}
 							onDropdownToggle={setOpenedDropdown}
 						/>
 
 						<ActionsSection
 							onClose={props.onClose}
-							onSave={() => {
-								props.onClose()
-								// Здесь позже добавим логику применения фильтров
-							}}
+							onSave={handleSave}
 						/>
 					</div>
 				</div>

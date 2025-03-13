@@ -1,6 +1,8 @@
 import classes from "./Animators.module.sass"
 import { createSignal, For, Show } from "solid-js"
 
+import { AnimatorCard, SortingSettings } from "../../types/types"
+
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
@@ -12,37 +14,99 @@ import { VsSettings } from "solid-icons/vs"
 import FiltersModal from "../../components/FiltersModal"
 import AnimatorCards from "../../components/Cards/Animators"
 
+
 export default function Animators() {
 	const [searchQuery, setSearchQuery] = createSignal("")
 	const [isOpen, setIsOpen] = createSignal(false)
-	const handleAddToCart = () => console.log("Добавлено в корзину")
-	const handleDetails = () => console.log("Открыть модалку")
-
-	const filteredCards = () => {
-		return cardsData.filter((card) =>
-			card.text.toLowerCase().includes(searchQuery().toLowerCase())
-		)
-	}
-
-	const cardsData = [
+	
+	const cardsData: AnimatorCard[] = [
 		{
 			id: 1,
 			imageUrl: animators,
 			text: "Цифровой цирк",
+			gender: "boy",
+			age: "5-10",
+			price: 5000,
+			popularity: 95,
 		},
 		{
 			id: 2,
 			imageUrl: animators,
 			text: "Трансформеры",
+			gender: "boy",
+			age: "3-7",
+			price: 4500,
+			popularity: 105,
 		},
 		{
 			id: 3,
 			imageUrl: animators,
-			text: "Вадим дурак 1",
+			text: "Принцессы",
+			gender: "girl",
+			age: "4-8",
+			price: 4800,
+			popularity: 55,
 		},
-		
 	]
 
+
+	const handleAddToCart = () => console.log("Добавлено в корзину")
+	const handleDetails = () => console.log("Открыть модалку")
+
+	const [appliedFilters, setAppliedFilters] = createSignal<{
+		genders: ("boy" | "girl")[]
+		age: number | null
+		minPrice: number | null
+		maxPrice: number | null
+		sort: SortingSettings
+	}>({
+		genders: [],
+		age: null,
+		minPrice: null,
+		maxPrice: null,
+		sort: { type: "popularity", direction: "asc" },
+	})
+
+	const isAgeInRange = (cardAge: string, filterAge: number | null) => {
+		if (filterAge === null) return true
+		const [min, max] = cardAge.split("-").map(Number)
+		return filterAge >= min && filterAge <= max
+	}
+
+	const sortedAndFilteredCards = () => {
+		const filtered = cardsData.filter((card) => {
+			const searchMatch = card.text
+				.toLowerCase()
+				.includes(searchQuery().toLowerCase())
+			const genderMatch =
+				appliedFilters().genders.length === 0 ||
+				appliedFilters().genders.includes(card.gender)
+			const ageMatch = isAgeInRange(card.age, appliedFilters().age)
+			const priceMatch =
+				(appliedFilters().minPrice === null ||
+					card.price >= appliedFilters().minPrice!) &&
+				(appliedFilters().maxPrice === null ||
+					card.price <= appliedFilters().maxPrice!)
+
+			return searchMatch && genderMatch && ageMatch && priceMatch
+		})
+		return [...filtered].sort((a, b) => {
+			const { type, direction } = appliedFilters().sort
+			const modifier = direction === "asc" ? 1 : -1
+
+			switch (type) {
+				case "price":
+					return (a.price - b.price) * modifier
+				case "alphabet":
+					return a.text.localeCompare(b.text) * modifier
+				case "popularity":
+				default:
+					return (b.popularity - a.popularity) * modifier
+			}
+		})
+	}
+
+	
 	return (
 		<div class={classes.container}>
 			<Header />
@@ -62,7 +126,7 @@ export default function Animators() {
 			</div>
 			<div class={classes.cardsContainer}>
 				<div class={classes.cards}>
-					<Show when={filteredCards().length > 0}>
+					<Show when={sortedAndFilteredCards().length > 0}>
 						{/* Верхняя шапка */}
 						<div class={classes.cardWrapper}>
 							<img
@@ -73,7 +137,7 @@ export default function Animators() {
 						</div>
 
 						{/* Карточки */}
-						<For each={filteredCards()}>
+						<For each={sortedAndFilteredCards()}>
 							{(card) => (
 								<AnimatorCards
 									imageUrl={card.imageUrl}
@@ -147,7 +211,12 @@ export default function Animators() {
 					</div>
 				</div>
 			</div>
-			<FiltersModal isOpen={isOpen()} onClose={() => setIsOpen(false)} />
+			<FiltersModal
+				isOpen={isOpen()}
+				onClose={() => setIsOpen(false)}
+				initialFilters={appliedFilters()}
+				onApply={setAppliedFilters}
+			/>
 		</div>
 	)
 }

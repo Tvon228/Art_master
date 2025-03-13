@@ -1,30 +1,36 @@
 import classes from "./AgeFilter.module.sass"
 import { createSignal } from "solid-js"
+import { JSX } from "solid-js"
 
 interface AgeFilterProps {
-	onAgeChange: (age: string) => void
+	age: number | null
+	onAgeChange: (value: number | null) => void
 }
 
 export default function AgeFilter(props: AgeFilterProps) {
-	const [age, setAge] = createSignal("")
-
-	const handleInput = (e: InputEvent) => {
-		const value = (e.currentTarget as HTMLInputElement).value
-		const sanitizedValue = value.replace(/[^0-9-]/g, "") // Разрешаем только цифры и дефис
-		setAge(sanitizedValue)
-		props.onAgeChange(sanitizedValue)
+	const handleInput: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
+		const value = e.currentTarget.value
+		if (value === "") {
+			props.onAgeChange(null)
+		} else {
+			const num = parseInt(value, 10)
+			if (!isNaN(num)) {
+				props.onAgeChange(num)
+			}
+		}
 	}
-
 	return (
 		<div class={classes.filterGroup}>
 			<h3 class={classes.filterTitle}>возраст:</h3>
 			<div class={classes.ageInputContainer}>
 				<input
-					type="text"
+					type="number"
 					class={classes.ageInput}
-					placeholder="0-1 год"
-					value={age()}
+					placeholder="0-18"
+					value={props.age ?? ""}
 					onInput={handleInput}
+					min="1"
+					max="18"
 				/>
 				<div class={classes.underline}></div>
 			</div>

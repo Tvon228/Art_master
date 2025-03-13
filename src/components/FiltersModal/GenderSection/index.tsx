@@ -2,18 +2,15 @@ import classes from "./GenderSection.module.sass"
 
 interface GenderSectionProps {
 	selected: ("boy" | "girl")[]
-	onToggle: (
-		callback: (prev: ("boy" | "girl")[]) => ("boy" | "girl")[]
-	) => void
+	onToggle: (genders: ("boy" | "girl")[]) => void
 }
 
 export default function GenderSection(props: GenderSectionProps) {
 	const handleClick = (gender: "boy" | "girl") => {
-		props.onToggle((prev: ("boy" | "girl")[]) =>
-			prev.includes(gender)
-				? prev.filter((g: "boy" | "girl") => g !== gender)
-				: [...prev, gender]
-		)
+		const newGenders = props.selected.includes(gender)
+			? props.selected.filter((g) => g !== gender)
+			: [...props.selected, gender]
+		props.onToggle(newGenders)
 	}
 
 	return (

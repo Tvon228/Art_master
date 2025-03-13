@@ -1,6 +1,10 @@
 import classes from "./SortingSection.module.sass"
 import { JSX } from "solid-js"
 
+
+export type SortType = "popularity" | "price" | "alphabet"
+export type SortDirection = "asc" | "desc"
+
 export interface SortingSettings {
 	type: "popularity" | "price" | "alphabet"
 	direction: "asc" | "desc"
@@ -17,27 +21,35 @@ export default function SortingSection(props: SortingSectionProps) {
 	let priceDropdownRef: HTMLDivElement | undefined
 	let alphabetDropdownRef: HTMLDivElement | undefined
 
-	const handleSortTypeClick = (type: "popularity" | "price" | "alphabet") => {
+	const handleSortTypeClick = (type: SortType) => {
 		if (type === "popularity") {
 			props.onSettingsChange({
-				type: type, // Явное указание типа
+				type: type,
 				direction: "asc",
 			})
 			props.onDropdownToggle(null)
 		} else {
+			const newDirection =
+				props.settings.type === type ? props.settings.direction : "asc"
+
 			props.onSettingsChange({
 				type: type,
-				direction:
-					props.settings.type === type
-						? props.settings.direction
-						: "asc",
+				direction: newDirection,
 			})
-			props.onDropdownToggle(props.openedDropdown === type ? null : type)
+
+			if (type === props.openedDropdown) {
+				props.onDropdownToggle(null)
+			} else {
+				props.onDropdownToggle(type)
+			}
 		}
 	}
 
-	const handleDirectionChange = (direction: "asc" | "desc") => {
-		props.onSettingsChange({ ...props.settings, direction })
+	const handleDirectionChange = (direction: SortDirection) => {
+		props.onSettingsChange({
+			...props.settings,
+			direction: direction,
+		})
 		props.onDropdownToggle(null)
 	}
 
