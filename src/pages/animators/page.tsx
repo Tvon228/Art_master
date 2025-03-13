@@ -1,13 +1,13 @@
 import classes from "./Animators.module.sass"
 import { createSignal, For, Show } from "solid-js"
 
-import { AnimatorCard, SortingSettings, FiltersType } from "../../types/types"
+import { SortingSettings, FiltersType } from "../../types/types"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
-import animators from "../../assets/animators.png"
+import { cardsData } from "../../data/animatorsData"
 import img2 from "../../assets/img2_home.svg"
 import { VsSettings } from "solid-icons/vs"
 
@@ -25,36 +25,6 @@ const defaultFilters: FiltersType = {
 export default function Animators() {
 	const [searchQuery, setSearchQuery] = createSignal("")
 	const [isOpen, setIsOpen] = createSignal(false)
-
-	const cardsData: AnimatorCard[] = [
-		{
-			id: 1,
-			imageUrl: animators,
-			text: "Цифровой цирк",
-			gender: "boy",
-			age: "5-10",
-			price: 5000,
-			popularity: 95,
-		},
-		{
-			id: 2,
-			imageUrl: animators,
-			text: "Трансформеры",
-			gender: "boy",
-			age: "3-7",
-			price: 4500,
-			popularity: 105,
-		},
-		{
-			id: 3,
-			imageUrl: animators,
-			text: "Принцессы",
-			gender: "girl",
-			age: "4-8",
-			price: 4800,
-			popularity: 55,
-		},
-	]
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
 	const handleDetails = () => console.log("Открыть модалку")
@@ -111,7 +81,7 @@ export default function Animators() {
 				case "popularity":
 					return (b.popularity - a.popularity) * modifier
 				default:
-					return 0 
+					return 0
 			}
 		})
 	}
