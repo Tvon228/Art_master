@@ -1,20 +1,46 @@
 import { AnimatorCard } from "../types/types"
-import animators from "../assets/animators.png"
+
+import superGirl from "../assets/cards/superGirl.png"
+import superman from "../assets/cards/spiderman.png"
+import K_POP_party from "../assets/cards/K_POP_party.png"
+import NERF from "../assets/cards/NERF.png"
+import standoff3 from "../assets/cards/standoff3.png"
+import angel from "../assets/cards/angel.png"
+import barbi_and_ken from "../assets/cards/barbi_and_ken.png"
+import pony from "../assets/cards/pony.png"
+import garryPotter from "../assets/cards/garryPotter.png"
+import discoParty from "../assets/cards/discoParty.png"
+import gameKalmar from "../assets/cards/gameKalmar.png"
+import kuromi from "../assets/cards/kyromi.png"
+import minecraft from "../assets/cards/minecraft.png"
+import malifisenta from "../assets/cards/malifisenta.png"
+import mafia from "../assets/cards/mafia.png"
+import pirats from "../assets/cards/pirats.png"
+import traktor from "../assets/cards/traktor.png"
+import sport from "../assets/cards/sport.png"
+import TT from "../assets/cards/tt.png"
+import transformers from "../assets/cards/transformers.png"
+import cats3 from "../assets/cards/cats3.png"
+import wednesday from "../assets/cards/wednesday.png"
+import fordBoyard from "../assets/cards/fordBoyard.png"
+import footballParty from "../assets/cards/footballParty.png"
+import circus from "../assets/cards/circus.png"
+import superhero from "../assets/cards/superHero.png"
 
 export const cardsData: AnimatorCard[] = [
 	{
 		id: 1,
-		imageUrl: animators,
-		text: "Цифровой цирк",
-		gender: "boy",
+		imageUrl: superGirl,
+		text: "Супергёрл",
+		gender: "girl",
 		age: "5-10",
 		price: 5000,
 		popularity: 95,
 	},
 	{
 		id: 2,
-		imageUrl: animators,
-		text: "Трансформеры",
+		imageUrl: superman,
+		text: "Человек-паук",
 		gender: "boy",
 		age: "3-7",
 		price: 4500,
@@ -22,11 +48,218 @@ export const cardsData: AnimatorCard[] = [
 	},
 	{
 		id: 3,
-		imageUrl: animators,
-		text: "Принцессы",
+		imageUrl: K_POP_party,
+		text: "K-POP вечеринка",
 		gender: "girl",
 		age: "4-8",
-		price: 4800,
-		popularity: 55,
+		price: 7500,
+		popularity: 94,
+	},
+	{
+		id: 4,
+		imageUrl: NERF,
+		text: "Нерф битва",
+		gender: "boy",
+		age: "4-8",
+		price: 11500,
+		popularity: 92,
+	},
+	{
+		id: 5,
+		imageUrl: standoff3,
+		text: "Standoff 2",
+		gender: "boy",
+		age: "4-8",
+		price: 11500,
+		popularity: 98,
+	},
+	{
+		id: 6,
+		imageUrl: angel,
+		text: "Ангел",
+		gender: "girl",
+		age: "4-8",
+		price: 5500,
+		popularity: 99,
+	},
+	{
+		id: 7,
+		imageUrl: barbi_and_ken,
+		text: "Барби и Кен",
+		gender: "girl",
+		age: "4-8",
+		price: 6500,
+		popularity: 78,
+	},
+	{
+		id: 8,
+		imageUrl: pony,
+		text: "Волшебный Единорог",
+		gender: "girl",
+		age: "4-8",
+		price: 5500,
+		popularity: 79,
+	},
+	{
+		id: 9,
+		imageUrl: garryPotter,
+		text: "Гарри Поттер",
+		gender: "boy",
+		age: "4-8",
+		price: 9500,
+		popularity: 87,
+	},
+	{
+		id: 10,
+		imageUrl: discoParty,
+		text: "Диско вечеринка",
+		gender: "boy",
+		age: "4-8",
+		price: 7500,
+		popularity: 95,
+	},
+	{
+		id: 11,
+		imageUrl: gameKalmar,
+		text: "Игра в кальмара",
+		gender: "boy",
+		age: "4-8",
+		price: 9500,
+		popularity: 84,
+	},
+	{
+		id: 12,
+		imageUrl: kuromi,
+		text: "Куроми",
+		gender: "girl",
+		age: "4-8",
+		price: 5500,
+		popularity: 80,
+	},
+	{
+		id: 13,
+		imageUrl: minecraft,
+		text: "Майнкрафт",
+		gender: "boy",
+		age: "4-8",
+		price: 8500,
+		popularity: 88,
+	},
+	{
+		id: 14,
+		imageUrl: malifisenta,
+		text: "Малифисента",
+		gender: "girl",
+		age: "4-8",
+		price: 7500,
+		popularity: 96,
+	},
+	{
+		id: 15,
+		imageUrl: mafia,
+		text: "Мафия",
+		gender: "boy",
+		age: "4-8",
+		price: 7500,
+		popularity: 93,
+	},
+	{
+		id: 16,
+		imageUrl: pirats,
+		text: "Пираты",
+		gender: "boy",
+		age: "4-8",
+		price: 7500,
+		popularity: 89,
+	},
+	{
+		id: 17,
+		imageUrl: traktor,
+		text: "Синий трактор",
+		gender: "boy",
+		age: "4-8",
+		price: 5500,
+		popularity: 83,
+	},
+	{
+		id: 18,
+		imageUrl: sport,
+		text: "Спорт Бум",
+		gender: "boy",
+		age: "4-8",
+		price: 7500,
+		popularity: 82,
+	},
+	{
+		id: 19,
+		imageUrl: TT,
+		text: "ТикТок",
+		gender: "girl",
+		age: "4-8",
+		price: 8500,
+		popularity: 86,
+	},
+	{
+		id: 20,
+		imageUrl: transformers,
+		text: "Трансформеры",
+		gender: "boy",
+		age: "4-8",
+		price: 8500,
+		popularity: 100,
+	},
+	{
+		id: 21,
+		imageUrl: cats3,
+		text: "Три кота",
+		gender: "girl",
+		age: "4-8",
+		price: 8500,
+		popularity: 90,
+	},
+	{
+		id: 22,
+		imageUrl: wednesday,
+		text: "Уэнсдей",
+		gender: "girl",
+		age: "4-8",
+		price: 9500,
+		popularity: 85,
+	},
+	{
+		id: 23,
+		imageUrl: fordBoyard,
+		text: "Форд Боярд",
+		gender: "boy",
+		age: "4-8",
+		price: 11500,
+		popularity: 91,
+	},
+	{
+		id: 24,
+		imageUrl: footballParty,
+		text: "Футбольная вечеринка",
+		gender: "boy",
+		age: "4-8",
+		price: 8500,
+		popularity: 97,
+	},
+	{
+		id: 25,
+		imageUrl: circus,
+		text: "Цифровой цирк",
+		gender: "girl",
+		age: "4-8",
+		price: 6500,
+		popularity: 77,
+	},
+	{
+		id: 26,
+		imageUrl: superhero,
+		text: "Супергерои",
+		gender: "girl",
+		age: "4-8",
+		price: 7500,
+		popularity: 81,
 	},
 ]

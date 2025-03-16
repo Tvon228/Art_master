@@ -17,7 +17,7 @@ const defaultFilters: FiltersType = {
 	age: null,
 	minPrice: null,
 	maxPrice: null,
-	sort: { type: "none", direction: "asc" }, 
+	sort: { type: "none", direction: "asc" },
 }
 
 interface FiltersModalProps {
@@ -60,51 +60,56 @@ export default function FiltersModal(props: FiltersModalProps) {
 							class={classes.closeIcon}
 							onClick={props.onClose}
 						/>
-
-						<GenderSection
-							selected={localFilters().genders}
-							onToggle={(genders) =>
-								setLocalFilters((p) => ({ ...p, genders }))
-							}
-						/>
-
-						<AgeFilter
-							age={localFilters().age}
-							onAgeChange={(age) =>
-								setLocalFilters((p) => ({ ...p, age }))
-							}
-						/>
-
-						<PriceFilter
-							minPrice={localFilters().minPrice}
-							maxPrice={localFilters().maxPrice}
-							onMinChange={(min) =>
-								setLocalFilters((p) => ({
-									...p,
-									minPrice: min,
-								}))
-							}
-							onMaxChange={(max) =>
-								setLocalFilters((p) => ({
-									...p,
-									maxPrice: max,
-								}))
-							}
-						/>
-
-						<SortingSection
-							settings={localFilters().sort}
-							onSettingsChange={(sort) =>
-								setLocalFilters((p) => ({ ...p, sort }))
-							}
-							openedDropdown={openedDropdown()}
-							onDropdownToggle={setOpenedDropdown}
-						/>
-
-						<ActionsSection
-							onReset={handleReset}
-							onSave={handleSave}
-						/>
+						<div class={classes.gender}>
+							<GenderSection
+								selected={localFilters().genders}
+								onToggle={(genders) =>
+									setLocalFilters((p) => ({ ...p, genders }))
+								}
+							/>
+						</div>
+						<div class={classes.age}>
+							<AgeFilter
+								age={localFilters().age}
+								onAgeChange={(age) =>
+									setLocalFilters((p) => ({ ...p, age }))
+								}
+							/>
+						</div>
+						<div class={classes.price}>
+							<PriceFilter
+								minPrice={localFilters().minPrice}
+								maxPrice={localFilters().maxPrice}
+								onMinChange={(min) =>
+									setLocalFilters((p) => ({
+										...p,
+										minPrice: min,
+									}))
+								}
+								onMaxChange={(max) =>
+									setLocalFilters((p) => ({
+										...p,
+										maxPrice: max,
+									}))
+								}
+							/>
+						</div>
+						<div class={classes.sort}>
+							<SortingSection
+								settings={localFilters().sort}
+								onSettingsChange={(sort) =>
+									setLocalFilters((p) => ({ ...p, sort }))
+								}
+								openedDropdown={openedDropdown()}
+								onDropdownToggle={setOpenedDropdown}
+							/>
+						</div>
+						<div class={classes.button}>
+							<ActionsSection
+								onReset={handleReset}
+								onSave={handleSave}
+							/>
+						</div>
 					</div>
 				</div>
 			</Portal>

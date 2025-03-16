@@ -24,7 +24,7 @@ export default function AgeFilter(props: AgeFilterProps) {
 			<h3 class={classes.filterTitle}>возраст:</h3>
 			<div class={classes.ageInputContainer}>
 				<input
-					type="number"
+					type="text"
 					class={classes.ageInput}
 					placeholder="0-18"
 					value={props.age ?? ""}
@@ -32,7 +32,7 @@ export default function AgeFilter(props: AgeFilterProps) {
 					min="1"
 					max="18"
 				/>
-				<div class={classes.underline}></div>
+				<div class={classes.underline}/>
 			</div>
 		</div>
 	)

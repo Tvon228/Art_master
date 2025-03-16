@@ -1,41 +1,46 @@
 .filterGroup
     display: flex
-    align-items: center
-    gap: 15px
-    margin-bottom: 20px
+    align-items: flex-end
+    width: 100%
+    gap: 1rem
+    padding-bottom: 1.1rem
 
 .filterTitle
-    font-size: 16px
+    font-size: 1.3rem
     margin: 0
-    color: #333
+    color: #E60B80
 
 .ageInputContainer
     position: relative
     flex: 1
 
 .ageInput
-    width: 100%
-    padding: 4px 0
+    text-align: center
+    width: 29%
     border: none
-    border-radius: 0
     background: transparent
-    font-size: 14px
+    font-size: 1.2rem
+    font-weight: 900
     outline: none
+    color: #E60B80
+    font-family: inherit
     transition: all 0.3s
 
     &::placeholder
-        color: #999
+        font-weight: 600
+        color: #8d8d8dd0
         font-style: inherit
 
 .underline
+    width: 38%
     position: absolute
     bottom: 0
     left: 0
     right: 0
-    height: 1px
-    background: #ddd
+    height: .1rem
+    background: #e60b8093
     transition: background 0.3s
 
     .ageInput:focus + &
-        background: #007bff
+        background: #E60B80
         height: 2px

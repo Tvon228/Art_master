@@ -27,18 +27,26 @@ export default function PriceFilter(props: PriceFilterProps) {
 		<div class={classes.filterGroup}>
 			<h3 class={classes.filterTitle}>цена:</h3>
 			<div class={classes.priceRange}>
-				<input
-					type="number"
-					placeholder="От"
-					value={props.minPrice ?? ""}
-					onInput={handleMinInput}
-				/>
-				<input
-					type="number"
-					placeholder="До"
-					value={props.maxPrice ?? ""}
-					onInput={handleMaxInput}
-				/>
+				<div class={classes.inputWrapper}>
+					<span class={classes.subInput}>От</span>
+					<input
+						class={classes.input}
+						type="number"
+						placeholder=". . ."
+						value={props.minPrice ?? ""}
+						onInput={handleMinInput}
+					></input>
+				</div>
+				<div class={classes.inputWrapper}>
+					<span class={classes.subInput}>До</span>
+					<input
+						class={classes.input}
+						type="number"
+						placeholder=". . ."
+						value={props.maxPrice ?? ""}
+						onInput={handleMaxInput}
+					></input>
+				</div>
 			</div>
 		</div>
 	)

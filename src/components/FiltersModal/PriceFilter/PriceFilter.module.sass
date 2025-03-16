@@ -1,25 +1,42 @@
 .filterGroup
-    margin-bottom: 20px
+    display: flex
+    align-items: center
+    padding: 1rem 0
+    gap: .7rem
 
 .filterTitle
-    font-size: 16px
-    margin: 0 0 10px 0
-    color: #333
+    font-size: 1.3rem
+    margin: 0
+    color: #E60B80
 
 .priceRange
     display: grid
     grid-template-columns: repeat(2, 1fr)
-    width: 90%
-    gap: 3rem
+    width: 100%
+    gap: .7rem
+
+.inputWrapper
+    position: relative
+    display: flex
+    justify-content: center
 
 .input
-    width: 100%
-    padding: 8px 12px
+    width: 60%
+    padding: .5rem 0 .5rem 2.5rem
     border: 1px solid #ddd
-    border-radius: 4px
-    font-size: 14px
+    border-radius: 1.1rem
+    font-size: 1rem
+    font-family: inherit
     transition: border-color 0.3s
 
     &:focus
         outline: none
-        border-color: #007bff
+        border-color: #E60B80
+
+.subInput
+    position: absolute
+    top: .55rem
+    left: .7rem
+    color: #E60B80
+    font-weight: 600
+    z-index: 10
