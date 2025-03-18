@@ -7,7 +7,7 @@ import GenderSection from "./GenderSection"
 import AgeFilter from "./AgeFilter"
 import PriceFilter from "./PriceFilter"
 import SortingSection from "./SortingSection"
-import { FiltersType } from "../../types/types"
+import { FiltersType } from "../../types/cards"
 import ActionsSection from "./ActionsSection"
 
 import closeModal from "../../assets/closeIcon.svg"

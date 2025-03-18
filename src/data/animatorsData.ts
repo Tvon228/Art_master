@@ -1,31 +1,31 @@
-import { AnimatorCard } from "../types/types"
+import { AnimatorCard } from "../types/cards"
 
-import superGirl from "../assets/cards/superGirl.png"
-import superman from "../assets/cards/spiderman.png"
-import K_POP_party from "../assets/cards/K_POP_party.png"
-import NERF from "../assets/cards/NERF.png"
-import standoff3 from "../assets/cards/standoff3.png"
-import angel from "../assets/cards/angel.png"
-import barbi_and_ken from "../assets/cards/barbi_and_ken.png"
-import pony from "../assets/cards/pony.png"
-import garryPotter from "../assets/cards/garryPotter.png"
-import discoParty from "../assets/cards/discoParty.png"
-import gameKalmar from "../assets/cards/gameKalmar.png"
-import kuromi from "../assets/cards/kyromi.png"
-import minecraft from "../assets/cards/minecraft.png"
-import malifisenta from "../assets/cards/malifisenta.png"
-import mafia from "../assets/cards/mafia.png"
-import pirats from "../assets/cards/pirats.png"
-import traktor from "../assets/cards/traktor.png"
-import sport from "../assets/cards/sport.png"
-import TT from "../assets/cards/tt.png"
-import transformers from "../assets/cards/transformers.png"
-import cats3 from "../assets/cards/cats3.png"
-import wednesday from "../assets/cards/wednesday.png"
-import fordBoyard from "../assets/cards/fordBoyard.png"
-import footballParty from "../assets/cards/footballParty.png"
-import circus from "../assets/cards/circus.png"
-import superhero from "../assets/cards/superHero.png"
+import superGirl from "../assets/cards/superGirl.webp"
+import superman from "../assets/cards/spiderman.webp"
+import K_POP_party from "../assets/cards/K_POP_party.webp"
+import NERF from "../assets/cards/NERF.webp"
+import standoff3 from "../assets/cards/standoff3.webp"
+import angel from "../assets/cards/angel.webp"
+import barbi_and_ken from "../assets/cards/barbi_and_ken.webp"
+import pony from "../assets/cards/pony.webp"
+import garryPotter from "../assets/cards/garryPotter.webp"
+import discoParty from "../assets/cards/discoParty.webp"
+import gameKalmar from "../assets/cards/gameKalmar.webp"
+import kyromi from "../assets/cards/kyromi.webp"
+import minecraft from "../assets/cards/minecraft.webp"
+import malifisenta from "../assets/cards/malifisenta.webp"
+import mafia from "../assets/cards/mafia.webp"
+import pirats from "../assets/cards/pirats.webp"
+import traktor from "../assets/cards/traktor.webp"
+import sport from "../assets/cards/sport.webp"
+import TT from "../assets/cards/tt.webp"
+import transformers from "../assets/cards/transformers.webp"
+import cats3 from "../assets/cards/cats3.webp"
+import wednesday from "../assets/cards/wednesday.webp"
+import fordBoyard from "../assets/cards/fordBoyard.webp"
+import footballParty from "../assets/cards/footballParty.webp"
+import circus from "../assets/cards/circus.webp"
+import superhero from "../assets/cards/superHero.webp"
 
 export const cardsData: AnimatorCard[] = [
 	{
@@ -129,7 +129,7 @@ export const cardsData: AnimatorCard[] = [
 	},
 	{
 		id: 12,
-		imageUrl: kuromi,
+		imageUrl: kyromi,
 		text: "Куроми",
 		gender: "girl",
 		age: "4-8",

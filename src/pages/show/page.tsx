@@ -1,18 +1,19 @@
-import classes from "./Animators.module.sass"
+import classes from "./Show.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
-import { SortingSettings, FiltersType } from "../../types/cards"
+import { SortingSettings, FiltersType } from "../../types/showPrograms"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
-import { cardsData } from "../../data/animatorsData"
 import img2 from "../../assets/img2_home.webp"
+
 import { VsSettings } from "solid-icons/vs"
+import { showProgramsData } from "../../data/showPrograms"
 
 import FiltersModal from "../../components/FiltersModal"
-import AnimatorCards from "../../components/Cards/Animators"
+import ShowProgramCards from "../../components/Cards/ShowPrograms" 
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -75,7 +76,7 @@ export default function Animators() {
 	})
 
 	const sortedAndFilteredCards = () => {
-		const filtered = cardsData.filter((card) => {
+		const filtered = showProgramsData.filter((card) => {
 			const searchMatch = card.text
 				.toLowerCase()
 				.includes(searchQuery().toLowerCase())
@@ -157,7 +158,7 @@ export default function Animators() {
 								{/* Карточки */}
 								<For each={sortedAndFilteredCards()}>
 									{(card) => (
-										<AnimatorCards
+										<ShowProgramCards
 											id={card.id}
 											imageUrl={card.imageUrl}
 											text={card.text}

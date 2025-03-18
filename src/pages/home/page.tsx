@@ -1,7 +1,7 @@
 import classes from "./home.module.sass"
 
-import img1 from "../../assets/img1_home.jpg"
-import img2 from "../../assets/img2_home.svg"
+import img1 from "../../assets/img1_home.webp"
+import img2 from "../../assets/img2_home.webp"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"

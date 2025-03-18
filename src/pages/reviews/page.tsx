@@ -3,13 +3,13 @@ import classes from "./Reviews.module.sass"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
-import img2 from "../../assets/img2_home.svg"
+import img2 from "../../assets/img2_home.webp"
 
 import Header from "../../components/Header"
 
-import user1 from "../../assets/user.png"
-import user2 from "../../assets/user.png"
-import user3 from "../../assets/user.png"
+import user1 from "../../assets/user.webp"
+import user2 from "../../assets/user.webp"
+import user3 from "../../assets/user.webp"
 import { createSignal, onCleanup, onMount } from "solid-js"
 
 const reviews = [
@@ -33,7 +33,7 @@ const reviews = [
 export default function Reviews() {
 	const [activeIndex, setActiveIndex] = createSignal(0)
 	const [animate, setAnimate] = createSignal(true)
-	let intervalId: number
+	let intervalId: ReturnType<typeof setInterval> | undefined
 
 	const startCarousel = () => {
 		intervalId = setInterval(() => {

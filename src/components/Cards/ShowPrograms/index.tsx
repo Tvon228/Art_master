@@ -1,9 +1,9 @@
-import classes from "./AnimatorCards.module.sass"
+import classes from "./ShowPrograms.module.sass"
 
 import { addToCart } from "../../../store/cart"
 import { createSignal, onMount, JSXElement } from "solid-js"
 
-type AnimatorCardProps = {
+type ShowProgramCardProps = {
 	id: number
 	imageUrl: string
 	text: string
@@ -11,7 +11,7 @@ type AnimatorCardProps = {
 	onButton2Click?: () => void
 }
 
-export default function AnimatorCards(props: AnimatorCardProps): JSXElement {
+export default function ShowProgramCards(props: ShowProgramCardProps): JSXElement {
 	const [isLoaded, _] = createSignal(false)
 	let imgRef: HTMLImageElement | undefined
 
@@ -47,7 +47,7 @@ export default function AnimatorCards(props: AnimatorCardProps): JSXElement {
 						class={classes.button}
 						onClick={() => {
 							props.onButton1Click?.()
-							addToCart(props.id, 'animator') 
+							addToCart(props.id, 'show')
 						}}
 					>
 						зовем их!

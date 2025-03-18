@@ -1,6 +1,6 @@
 import classes from "./SortingSection.module.sass"
 
-import { SortingSettings, SortType, SortDirection } from "../../../types/types"
+import { SortingSettings, SortType, SortDirection } from "../../../types/cards"
 
 interface SortingSectionProps {
 	settings: SortingSettings
@@ -63,7 +63,6 @@ export default function SortingSection(props: SortingSectionProps) {
 						onClick={() => handleSortTypeClick("popularity")}
 					>
 						Популярности
-						
 					</div>
 
 					{/* Цена */}

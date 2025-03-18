@@ -1,9 +1,11 @@
 import classes from "./Header.module.sass"
 
+import { cart } from "../../store/cart"
+
 import { createSignal } from "solid-js"
 
 import menu from "../../assets/menu.svg"
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.webp"
 import basket from "../../assets/basket.svg"
 import Sidebar from "../Sidebar"
 
@@ -11,7 +13,7 @@ export default function Header() {
 	const [isSidebarOpen, setIsSidebarOpen] = createSignal(false)
 
 	const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen())
-    const closeSidebar = () => setIsSidebarOpen(false)
+	const closeSidebar = () => setIsSidebarOpen(false)
 
 	return (
 		<div class={classes.container}>
@@ -27,7 +29,15 @@ export default function Header() {
 					<a href="/" class={classes.logoLink}>
 						<img src={logo} alt="logo" class={classes.logoImg} />
 					</a>
-					<img src={basket} width={26} height={26} alt="basketIcon" />
+					<a href="/checkout" class={classes.logoLink}>
+						<img
+							src={basket}
+							width={26}
+							height={26}
+							alt="basketIcon"
+						/>
+						<span class={classes.badge}>{cart.length}</span>
+					</a>
 				</div>
 			</div>
 			<div class={classes.headerText}>
