@@ -1,4 +1,4 @@
-import classes from "./Show.module.sass"
+import classes from "./MasterClass.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
 import { SortingSettings, FiltersType } from "../../types/showPrograms"
@@ -10,10 +10,10 @@ import telegram from "../../assets/telegram.svg"
 import img2 from "../../assets/img2_home.webp"
 
 import { VsSettings } from "solid-icons/vs"
-import { showProgramsData } from "../../data/showPrograms"
+import { masterClassData } from "../../data/masterClassData"
 
 import FiltersModal from "../../components/FiltersModal"
-import ShowProgramCards from "../../components/Cards/ShowPrograms" 
+import MasterClassCards from "../../components/Cards/MasterClass"
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -23,7 +23,7 @@ const defaultFilters: FiltersType = {
 	sort: { type: "popularity", direction: "asc" },
 }
 
-export default function Animators() {
+export default function MasterClass() {
 	const [searchQuery, setSearchQuery] = createSignal("")
 	const [isLoading, setIsLoading] = createSignal(true)
 	const [isOpen, setIsOpen] = createSignal(false)
@@ -76,7 +76,7 @@ export default function Animators() {
 	})
 
 	const sortedAndFilteredCards = () => {
-		const filtered = showProgramsData.filter((card) => {
+		const filtered = masterClassData.filter((card) => {
 			const searchMatch = card.text
 				.toLowerCase()
 				.includes(searchQuery().toLowerCase())
@@ -128,7 +128,7 @@ export default function Animators() {
 					</div>
 				}
 			>
-				<span class={classes.subHeaderText}>Шоу-программы</span>
+				<span class={classes.subHeaderText}>Мастер-классы</span>
 				<div class={classes.search}>
 					<input
 						class={classes.inputSearch}
@@ -158,7 +158,7 @@ export default function Animators() {
 								{/* Карточки */}
 								<For each={sortedAndFilteredCards()}>
 									{(card) => (
-										<ShowProgramCards
+										<MasterClassCards
 											id={card.id}
 											imageUrl={card.imageUrl}
 											text={card.text}

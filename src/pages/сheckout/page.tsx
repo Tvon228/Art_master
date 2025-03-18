@@ -5,12 +5,15 @@ import { For } from "solid-js"
 import { cart, removeFromCart } from "../../store/cart"
 import { cardsData } from "../../data/animatorsData"
 import { showProgramsData } from "../../data/showPrograms"
+import { masterClassData } from "../../data/masterClassData"
+import { dopsData } from "../../data/dopsData"
+
 import { Gender } from "../../types/cards"
 
 import closeIcon from "../../assets/closeIcon.svg"
 
 const getDataByType = (
-	type: "animator" | "show" | "masterclass",
+	type: "animator" | "show" | "masterclass" | "dops",
 	id: number
 ) => {
 	switch (type) {
@@ -19,7 +22,9 @@ const getDataByType = (
 		case "show":
 			return showProgramsData.find((s) => s.id === id)
 		case "masterclass":
-			return undefined
+			return masterClassData.find((s) => s.id === id)
+		case "dops":
+			return dopsData.find((s) => s.id === id)
 		default:
 			const _exhaustiveCheck: never = type
 			return _exhaustiveCheck
@@ -28,7 +33,7 @@ const getDataByType = (
 
 interface CartItemData {
 	id: number
-	type: "animator" | "show" | "masterclass"
+	type: "animator" | "show" | "masterclass" | "dops"
 	quantity: number
 	imageUrl: string
 	text: string

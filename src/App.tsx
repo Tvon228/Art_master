@@ -6,6 +6,8 @@ import Reviews from "./pages/reviews/page"
 import Animators from "./pages/animators/page"
 import Checkout from "./pages/сheckout/page"
 import ShowPrograms from "./pages/show/page"
+import MasterClass from "./pages/masterClasses/page"
+import Dops from "./pages/Dops/page"
 
 export default function App() {
 	return (
@@ -17,6 +19,8 @@ export default function App() {
 				<Route path="/animators" component={Animators} />
 				<Route path="/checkout" component={Checkout} />
 				<Route path="/show-programs" component={ShowPrograms} />
+				<Route path="/master-class" component={MasterClass} />
+				<Route path="/additionally" component={Dops} />
 			</Router>
 		</div>
 	)

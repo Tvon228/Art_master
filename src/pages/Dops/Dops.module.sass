@@ -1,0 +1,156 @@
+.container
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    z-index: 1000
+    overflow-y: auto
+    max-width: 600px
+    display: flex
+    flex-direction: column
+    align-items: center
+    overscroll-behavior: contain
+
+.subHeaderText
+    padding: 3rem 0 2rem 0
+    font-size: 1.3rem
+    font-weight: 600
+    color: #E60B80
+
+.search
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 1.2rem
+
+.inputSearch
+    font-size: 1rem
+    font-family: inherit
+    width: 14rem
+    padding: .5rem 1.2rem
+    border-radius: 2rem
+    border: 1px solid #E60B80
+    outline: none
+
+.cardsContainer
+
+    margin-top: 10rem
+    position: relative
+    width: 100%
+
+.cards
+    position: relative
+    z-index: 1
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+    min-height: 500px
+    width: 100%
+    z-index: 1
+    isolation: isolate
+
+.cardWrapper
+    position: relative
+    width: 100%
+    margin: -50px 0
+    grid-column: 1 / -1
+    z-index: 0
+
+.decorHeaderImage
+    position: absolute
+    top: -1rem
+    left: 0
+    width: 100%
+    height: auto
+    object-fit: contain
+
+.decorFooterImage
+    width: 100%
+    height: auto
+    object-fit: contain
+    margin: -100px 0
+    position: relative
+    z-index: -1 // Меняем z-index
+    transform: translateY(-40%)
+
+.footer
+    position: absolute
+    width: 100%
+    margin-top: auto
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 2rem
+    color: #E60B80
+
+.question
+    font-weight: 900
+    font-size: 1.6rem
+
+.telephone
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    gap: .4rem
+
+.textEnd
+    font-size: 1.2rem
+    font-weight: 500
+
+.number
+    font-size: 1.3rem
+    font-weight: 900
+    color: #E60B80
+
+.socialMedia
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding-top: 1rem
+
+.messangers
+    display: flex
+    padding-top: .6rem
+    gap: 1rem
+
+.mapBlock
+    display: flex
+    flex-direction: column
+    gap: .7rem
+    padding-top: 1.5rem
+    padding-bottom: 6rem
+
+.map
+    width: 17rem
+    height: 14rem
+    background-color: white
+    border: 1px solid black
+
+.loadingOverlay
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(255,255,255,0.9)
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1000
+
+.spinner
+    width: 40px
+    height: 40px
+    border: 4px solid #f3f3f3
+    border-top: 4px solid #E60B80
+    border-radius: 50%
+    animation: spin 1s linear infinite
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)

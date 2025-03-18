@@ -2,7 +2,7 @@ import { createStore } from "solid-js/store"
 
 export interface CartItem {
 	id: number
-	type: "animator" | "show" | "masterclass"
+	type: "animator" | "show" | "masterclass" | "dops"
 	quantity: number
 }
 

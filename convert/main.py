@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 # Абсолютные пути (замените на ваш реальный путь)
-INPUT_DIR = r"C:\Users\patsy\OneDrive\Documents\Project\Art_master\src\assets\showPrograms"
+INPUT_DIR = r"C:\Users\patsy\OneDrive\Documents\Project\Art_master\src\assets\dops"
 OUTPUT_DIR = INPUT_DIR  # Сохраняем в ту же директорию
 QUALITY = 80
 
