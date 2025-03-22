@@ -8,7 +8,7 @@ type AnimatorCardProps = {
 	imageUrl: string
 	text: string
 	onButton1Click?: () => void
-	onButton2Click?: () => void
+	onButton2Click?: (id: number) => void
 }
 
 export default function AnimatorCards(props: AnimatorCardProps): JSXElement {
@@ -54,7 +54,7 @@ export default function AnimatorCards(props: AnimatorCardProps): JSXElement {
 					</button>
 					<button
 						class={classes.button}
-						onClick={props.onButton2Click}
+						onClick={() => props.onButton2Click?.(props.id)}
 					>
 						подробнее
 					</button>

@@ -1,7 +1,7 @@
 import classes from "./Animators.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
-import { SortingSettings, FiltersType } from "../../types/cards"
+import { SortingSettings, FiltersType, AnimatorCard } from "../../types/cards"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -13,6 +13,7 @@ import { VsSettings } from "solid-icons/vs"
 
 import FiltersModal from "../../components/FiltersModal"
 import AnimatorCards from "../../components/Cards/Animators"
+import AnimatorDetailsModal from "../../components/Modals/AnimatorDetails"
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -28,9 +29,15 @@ export default function Animators() {
 	const [isOpen, setIsOpen] = createSignal(false)
 
 	const [contentLoaded, setContentLoaded] = createSignal(false)
+	const [selectedCard, setSelectedCard] = createSignal<AnimatorCard | null>(
+		null
+	)
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
-	const handleDetails = () => console.log("Открыть модалку")
+	const handleDetails = (cardId: number) => {
+		const foundCard = cardsData.find((c) => c.id === cardId)
+		setSelectedCard(foundCard || null)
+	}
 
 	const [appliedFilters, setAppliedFilters] = createSignal<{
 		genders: ("boy" | "girl")[]
@@ -178,6 +185,11 @@ export default function Animators() {
 								</div>
 							</Show>
 						</div>
+						<AnimatorDetailsModal
+							isOpen={!!selectedCard()}
+							card={selectedCard()}
+							onClose={() => setSelectedCard(null)}
+						/>
 						<div class={classes.footer}>
 							<span class={classes.question}>Есть вопросы?</span>
 							<div class={classes.telephone}>

@@ -1,7 +1,11 @@
 import classes from "./Show.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
-import { SortingSettings, FiltersType } from "../../types/showPrograms"
+import {
+	SortingSettings,
+	FiltersType,
+	ShowPrograms,
+} from "../../types/showPrograms"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -13,7 +17,8 @@ import { VsSettings } from "solid-icons/vs"
 import { showProgramsData } from "../../data/showPrograms"
 
 import FiltersModal from "../../components/FiltersModal"
-import ShowProgramCards from "../../components/Cards/ShowPrograms" 
+import ShowProgramCards from "../../components/Cards/ShowPrograms"
+import ShowPogramDetailsModal from "../../components/Modals/ShowPogramDetails"
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -29,9 +34,15 @@ export default function Animators() {
 	const [isOpen, setIsOpen] = createSignal(false)
 
 	const [_, setContentLoaded] = createSignal(false)
+	const [selectedCard, setSelectedCard] = createSignal<ShowPrograms | null>(
+		null
+	)
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
-	const handleDetails = () => console.log("Открыть модалку")
+	const handleDetails = (cardId: number) => {
+		const foundCard = showProgramsData.find((c) => c.id === cardId)
+		setSelectedCard(foundCard || null)
+	}
 
 	const [appliedFilters, setAppliedFilters] = createSignal<{
 		genders: ("boy" | "girl")[]
@@ -179,6 +190,11 @@ export default function Animators() {
 								</div>
 							</Show>
 						</div>
+						<ShowPogramDetailsModal
+							isOpen={!!selectedCard()}
+							card={selectedCard()}
+							onClose={() => setSelectedCard(null)}
+						/>
 						<div class={classes.footer}>
 							<span class={classes.question}>Есть вопросы?</span>
 							<div class={classes.telephone}>

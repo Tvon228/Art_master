@@ -8,7 +8,7 @@ type DopsCardProps = {
 	imageUrl: string
 	text: string
 	onButton1Click?: () => void
-	onButton2Click?: () => void
+	onButton2Click?: (id: number) => void
 }
 
 export default function DopsCards(
@@ -56,7 +56,7 @@ export default function DopsCards(
 					</button>
 					<button
 						class={classes.button}
-						onClick={props.onButton2Click}
+						onClick={() => props.onButton2Click?.(props.id)}
 					>
 						подробнее
 					</button>

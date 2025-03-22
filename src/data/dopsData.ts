@@ -26,6 +26,7 @@ export const dopsData: Dops[] = [
 		age: "5-10",
 		price: 5000,
 		popularity: 95,
+		description: "Йоу"
 	},
 	{
 		id: 2,

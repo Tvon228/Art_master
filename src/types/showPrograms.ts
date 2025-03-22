@@ -8,6 +8,9 @@ export interface ShowPrograms {
 	age: string
 	price: number
 	popularity: number
+	description?: string
+	duration?: string
+	activities?: string[]
 }
 
 export type SortType = "none" | "popularity" | "price" | "alphabet"

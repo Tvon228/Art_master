@@ -1,7 +1,11 @@
 import classes from "./MasterClass.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
-import { SortingSettings, FiltersType } from "../../types/showPrograms"
+import {
+	SortingSettings,
+	FiltersType,
+	MasterClasses,
+} from "../../types/masterClasses"
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -14,6 +18,7 @@ import { masterClassData } from "../../data/masterClassData"
 
 import FiltersModal from "../../components/FiltersModal"
 import MasterClassCards from "../../components/Cards/MasterClass"
+import MasterClassDetailsModal from "../../components/Modals/MasterClassDetails"
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -29,9 +34,15 @@ export default function MasterClass() {
 	const [isOpen, setIsOpen] = createSignal(false)
 
 	const [_, setContentLoaded] = createSignal(false)
+	const [selectedCard, setSelectedCard] = createSignal<MasterClasses | null>(
+		null
+	)
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
-	const handleDetails = () => console.log("Открыть модалку")
+	const handleDetails = (cardId: number) => {
+		const foundCard = masterClassData.find((c) => c.id === cardId)
+		setSelectedCard(foundCard || null)
+	}
 
 	const [appliedFilters, setAppliedFilters] = createSignal<{
 		genders: ("boy" | "girl")[]
@@ -117,6 +128,8 @@ export default function MasterClass() {
 		setTimeout(() => setIsLoading(false), 1500)
 	})
 
+	
+
 	return (
 		<div class={classes.container}>
 			<Header />
@@ -179,6 +192,11 @@ export default function MasterClass() {
 								</div>
 							</Show>
 						</div>
+						<MasterClassDetailsModal
+							isOpen={!!selectedCard()}
+							card={selectedCard()}
+							onClose={() => setSelectedCard(null)}
+						/>
 						<div class={classes.footer}>
 							<span class={classes.question}>Есть вопросы?</span>
 							<div class={classes.telephone}>

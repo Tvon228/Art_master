@@ -1,7 +1,8 @@
 import classes from "./Dops.module.sass"
 import { createSignal, For, Show, onMount, createEffect } from "solid-js"
 
-import { SortingSettings, FiltersType } from "../../types/showPrograms"
+import { SortingSettings, FiltersType, Dops } from "../../types/dops"
+
 
 import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
@@ -14,6 +15,7 @@ import { dopsData } from "../../data/dopsData"
 
 import FiltersModal from "../../components/FiltersModal"
 import DopsCards from "../../components/Cards/Dops"
+import DopsDetailsModal from "../../components/Modals/DopsDetails"
 
 const defaultFilters: FiltersType = {
 	genders: [],
@@ -23,15 +25,19 @@ const defaultFilters: FiltersType = {
 	sort: { type: "popularity", direction: "asc" },
 }
 
-export default function Dops() {
+export default function DopsPage() {
 	const [searchQuery, setSearchQuery] = createSignal("")
 	const [isLoading, setIsLoading] = createSignal(true)
 	const [isOpen, setIsOpen] = createSignal(false)
 
 	const [_, setContentLoaded] = createSignal(false)
+	const [selectedCard, setSelectedCard] = createSignal<Dops | null>(null)
 
 	const handleAddToCart = () => console.log("Добавлено в корзину")
-	const handleDetails = () => console.log("Открыть модалку")
+	const handleDetails = (cardId: number) => {
+		const foundCard = dopsData.find((c) => c.id === cardId)
+		setSelectedCard(foundCard || null)
+	}
 
 	const [appliedFilters, setAppliedFilters] = createSignal<{
 		genders: ("boy" | "girl")[]
@@ -179,6 +185,11 @@ export default function Dops() {
 								</div>
 							</Show>
 						</div>
+						<DopsDetailsModal
+							isOpen={!!selectedCard()}
+							card={selectedCard()}
+							onClose={() => setSelectedCard(null)}
+						/>
 						<div class={classes.footer}>
 							<span class={classes.question}>Есть вопросы?</span>
 							<div class={classes.telephone}>
