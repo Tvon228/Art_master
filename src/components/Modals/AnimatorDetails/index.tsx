@@ -57,9 +57,9 @@ export default function AnimatorDetailsModal(props: Props) {
 										</div>
 
 										<Show when={card().description}>
-											<p class={classes.desc}>
+											<div class={classes.description}>
 												{card().description}
-											</p>
+											</div>
 										</Show>
 									</div>
 								</div>

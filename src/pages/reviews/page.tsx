@@ -4,6 +4,7 @@ import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
 import img2 from "../../assets/img2_home.webp"
+import Map from "../../assets/map.png"
 
 import Header from "../../components/Header"
 
@@ -127,9 +128,27 @@ export default function Reviews() {
 				</div>
 				<div class={classes.mapBlock}>
 					<span class={classes.textEnd}>мы на карте</span>
-					<div class={classes.map} /> {/*добавить карту */}
-					<div class={classes.textEnd}>адрес такой то там</div>{" "}
-					{/*добавить адрес */}
+					<a
+						class={classes.map}
+						href={
+							"https://yandex.eu/maps/146/simferopol/house/kyivska_vulytsia_190b/Z00YdgBkQEEOQFpufXV5dnlgZw==/?indoorLevel=1&ll=34.075511%2C44.986802&z=16.59"
+						}
+						style={{
+							"background-image": `url(${Map})`,
+							"background-size": "cover",
+							"background-position": "center",
+							"background-repeat": "no-repeat",
+						}}
+					/>
+					{/*добавить карту */}
+					<a
+						href={
+							"https://yandex.eu/maps/146/simferopol/house/kyivska_vulytsia_190b/Z00YdgBkQEEOQFpufXV5dnlgZw==/?indoorLevel=1&ll=34.075511%2C44.986802&z=16.59"
+						}
+						class={classes.textEnd}
+					>
+						Киевская 190Б, Симферополь
+					</a>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import Checkout from "./pages/сheckout/page"
 import ShowPrograms from "./pages/show/page"
 import MasterClass from "./pages/masterClasses/page"
 import DopsPage from "./pages/dops/page"
+import Portfolio from "./pages/portfolio/page"
 
 export default function App() {
 	return (
@@ -21,6 +22,7 @@ export default function App() {
 				<Route path="/show-programs" component={ShowPrograms} />
 				<Route path="/master-class" component={MasterClass} />
 				<Route path="/additionally" component={DopsPage} />
+				<Route path="/portfolio" component={Portfolio} />
 			</Router>
 		</div>
 	)

@@ -1,16 +1,37 @@
-import classes from "./contacts.module.sass"
+import classes from "./Portfolio.module.sass"
 
+import Header from "../../components/Header"
 import vk from "../../assets/vk.svg"
 import inst from "../../assets/inst.svg"
 import telegram from "../../assets/telegram.svg"
-import Header from "../../components/Header"
+import img2 from "../../assets/img2_home.webp"
 import Map from "../../assets/map.png"
 
-export default function Contacts() {
+import PortfolioSlider from "../../components/Porfolio"
+
+export default function Portfolio() {
 	return (
 		<div class={classes.container}>
 			<Header />
-			<div class={classes.main}>
+			<div class={classes.content}>
+				<div class={classes.cardWrapper}>
+					<img
+						src={img2}
+						class={classes.decorHeaderImage}
+						alt="Верхний декор"
+					/>
+				</div>
+				<PortfolioSlider />
+				<div class={classes.cardWrapper}>
+					<img
+						src={img2}
+						class={classes.decorFooterImage}
+						alt="Нижний декор"
+						loading="lazy"
+					/>
+				</div>
+			</div>
+			<div class={classes.footer}>
 				<span class={classes.question}>Есть вопросы?</span>
 				<div class={classes.telephone}>
 					<span class={classes.textEnd}>задайте их по телефону</span>

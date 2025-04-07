@@ -5,16 +5,54 @@
     width: 100%
     height: 100vh
     z-index: 1000
-    overflow-y: auto
     max-width: 600px
     display: flex
     flex-direction: column
     align-items: center
+    min-height: 100vh
+    overflow-y: auto
     overscroll-behavior: contain
 
-.main
+.content
+    margin-top: 10rem
+    position: relative
+    z-index: 1
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+    min-height: 500px
     width: 100%
-    padding-top: 4rem
+    z-index: 1
+    isolation: isolate
+
+.cardWrapper
+    position: relative
+    width: 100%
+    margin: -50px 0
+    grid-column: 1 / -1
+    z-index: 0
+
+.decorHeaderImage
+    position: absolute
+    top: -1rem
+    left: 0
+    width: 100%
+    height: auto
+    object-fit: contain
+
+.decorFooterImage
+    width: 100%
+    height: auto
+    object-fit: contain
+    margin: -100px 0
+    position: relative
+    z-index: -1 // Меняем z-index
+    transform: translateY(-40%)
+
+.footer
+    top: 55rem
+    position: absolute
+    width: 100%
+    margin-top: auto
     display: flex
     flex-direction: column
     align-items: center

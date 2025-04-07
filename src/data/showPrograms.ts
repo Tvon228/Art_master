@@ -57,7 +57,7 @@ export const showProgramsData: ShowPrograms[] = [
     {
 		id: 6,
 		imageUrl: silver,
-		text: "Silver",
+		text: "Серебро шоу",
 		gender: "girl",
 		age: "5-10",
 		price: 5000,
